@@ -20,6 +20,10 @@ public class HomePage extends BasePage {
     private WebElement bytesRadioButton;
     @FindBy(xpath = "//input[@value='words']")
     private WebElement wordsRadioButton;
+    @FindBy(xpath = "//input[@id='start']")
+    private WebElement checkbox;
+    @FindBy(xpath = "//div[@id='lipsum']")
+    private WebElement textAfterClickingCheckboxAndGeneration;
 
 
     public HomePage(WebDriver driver) {
@@ -63,5 +67,12 @@ public class HomePage extends BasePage {
     }
     public void clickWordsRadioButton(){
         wordsRadioButton.click();
+    }
+    public void clickOnCheckbox(){
+        checkbox.click();
+    }
+    public String getTextAfterClickingCheckboxAndGeneration(){
+        String text= textAfterClickingCheckboxAndGeneration.getText();
+        return text;
     }
 }

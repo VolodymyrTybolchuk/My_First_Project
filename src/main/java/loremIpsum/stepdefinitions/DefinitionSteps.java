@@ -87,4 +87,15 @@ public class DefinitionSteps {
         afterGenerationResultPage.waitForPageLoadComplete(DEFAULT_TIME);
         assertTrue(afterGenerationResultPage.getTextResult().contains(expectedResult));
     }
+
+    @And("User clicks on checkbox near to “Generate Lorem Ipsum” button")
+    public void userClicksOnCheckboxNearToGenerateLoremIpsumButton() {
+        homePage.clickOnCheckbox();
+    }
+
+    @Then("User checks that text not starts with {string}")
+    public void userChecksThatTextNotStartsWithFalseResult(final String falseResult) {
+        homePage.waitForPageLoadComplete(DEFAULT_TIME);
+        assertTrue(homePage.getTextAfterClickingCheckboxAndGeneration().startsWith(falseResult)==false);
+    }
 }

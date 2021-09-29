@@ -67,6 +67,17 @@ Feature: Smoke
     And User clicks *bytes* radio button
     When User clicks “Generate Lorem Ipsum” button
     Then User checks "5 bytes" result of generation
+
     Examples:
       | homePage            |
       | https://lipsum.com/ |
+
+  Scenario Outline: Check that after clicking checkbox text is not started with false result (Second part of task2)
+    Given User opens '<homePage>'
+    And User clicks on checkbox near to “Generate Lorem Ipsum” button
+    When User clicks “Generate Lorem Ipsum” button
+    Then User checks that text not starts with '<falseResult>'
+
+    Examples:
+      | homePage            | falseResult |
+      | https://lipsum.com/ | Lorem ipsum |
