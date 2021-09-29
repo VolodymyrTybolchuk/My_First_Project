@@ -6,18 +6,21 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import loremIpsum.manager.PageFactoryManager;
+import loremIpsum.pages.AfterGenerationResultPage;
 import loremIpsum.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DefinitionSteps {
     private static final long DEFAULT_TIME = 120;
     WebDriver driver;
     PageFactoryManager pageFactoryManager;
     HomePage homePage;
+    AfterGenerationResultPage afterGenerationResultPage;
 
     @Before
     public void testSetUp(){
@@ -59,5 +62,29 @@ public class DefinitionSteps {
     public void userChecksTextOnFirstParagraph(final String expectedText) {
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
         assertEquals(expectedText,homePage.getTextOfFirstParagraph());
+    }
+
+
+    @And("User put parameter\\({int}) to input field")
+    public void userPutParameterToInputField(int parameter) {
+        String inputParameter= String.valueOf(parameter);
+        homePage.sendKeysToInputFieldForGeneration(inputParameter);
+    }
+
+    @And("User clicks *words* radio button")
+    public void userClicksWordsRadioButton() {
+        homePage.clickWordsRadioButton();
+    }
+
+    @And("User clicks *bytes* radio button")
+    public void userClicksBytesRadioButton() {
+        homePage.clickBytesRadioButton();
+    }
+
+    @Then("User checks {string} result of generation")
+    public void userChecksResultOfGeneration(String expectedResult) {
+        afterGenerationResultPage=pageFactoryManager.getAfterGenerationResultPage();
+        afterGenerationResultPage.waitForPageLoadComplete(DEFAULT_TIME);
+        assertTrue(afterGenerationResultPage.getTextResult().contains(expectedResult));
     }
 }

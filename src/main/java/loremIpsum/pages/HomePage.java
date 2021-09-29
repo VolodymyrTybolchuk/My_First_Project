@@ -14,6 +14,12 @@ public class HomePage extends BasePage {
     private WebElement generateLoremIpsumButton;
     @FindBy(xpath = "//div[@id='lipsum']//following-sibling::p[contains(.,'L')]")
     private WebElement textAfterClickingGenerateLoremIpsumButton;
+    @FindBy(xpath = "//input[@type='text']")
+    private WebElement inputFieldForGeneration;
+    @FindBy(xpath = "//input[@value='bytes']")
+    private WebElement bytesRadioButton;
+    @FindBy(xpath = "//input[@value='words']")
+    private WebElement wordsRadioButton;
 
 
     public HomePage(WebDriver driver) {
@@ -46,5 +52,16 @@ public class HomePage extends BasePage {
 
     public void openHomePage(String url) {
         driver.get(url);
+    }
+
+    public void sendKeysToInputFieldForGeneration(final String inputValue){
+        inputFieldForGeneration.clear();
+        inputFieldForGeneration.sendKeys(inputValue);
+    }
+    public void clickBytesRadioButton(){
+        bytesRadioButton.click();
+    }
+    public void clickWordsRadioButton(){
+        wordsRadioButton.click();
     }
 }
