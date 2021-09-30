@@ -49,3 +49,12 @@ Feature: Smoke
     Examples:
       | homePage            | falseResult |
       | https://lipsum.com/ | Lorem ipsum |
+
+  Scenario Outline: Check average amount of paragraph that contains word "lorem", after 10 generation (Third part of task2)
+    Given User opens '<homePage>'
+    When User clicks “Generate Lorem Ipsum” button
+    And User determines number of each paragraph that contains '<word>'
+
+    Examples:
+      | homePage            |word| expectedAverageResult |
+      | https://lipsum.com/ |lorem| 2                     |

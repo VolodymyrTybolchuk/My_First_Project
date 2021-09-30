@@ -18,4 +18,7 @@ public class PageFactoryManager {
     public AfterGenerationResultPage getAfterGenerationResultPage() {
         return new AfterGenerationResultPage(driver);
     }
+    public AfterGenerationPage getAfterGenerationPage(){
+        return new AfterGenerationPage(driver);
+    }
 }

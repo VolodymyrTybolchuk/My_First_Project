@@ -6,10 +6,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import loremIpsum.manager.PageFactoryManager;
+import loremIpsum.pages.AfterGenerationPage;
 import loremIpsum.pages.AfterGenerationResultPage;
 import loremIpsum.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.stream.Collectors;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static org.junit.Assert.assertEquals;
@@ -21,6 +24,7 @@ public class DefinitionSteps {
     PageFactoryManager pageFactoryManager;
     HomePage homePage;
     AfterGenerationResultPage afterGenerationResultPage;
+    AfterGenerationPage afterGenerationPage;
 
     @Before
     public void testSetUp(){
@@ -96,5 +100,12 @@ public class DefinitionSteps {
     @And("User put parameter{string} to input field")
     public void userPutParameterToInputField(String inputParameter) {
         homePage.sendKeysToInputFieldForGeneration(inputParameter);
+    }
+
+    @And("User determines number of each paragraph that contains {string}")
+    public void userDeterminesNumberOfEachParagraphThatContainsWord(final String word) {
+        afterGenerationPage=pageFactoryManager.getAfterGenerationPage();
+        afterGenerationPage.waitForPageLoadComplete(DEFAULT_TIME);
+        afterGenerationPage.getParagraphs().stream().filter(x-> x.getText().contains(word)).collect(Collectors.toList());
     }
 }
