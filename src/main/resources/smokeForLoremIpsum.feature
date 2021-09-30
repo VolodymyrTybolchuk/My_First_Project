@@ -22,55 +22,23 @@ Feature: Smoke
       | https://lipsum.com/ | Lorem ipsum dolor sit amet, consectetur adipiscing elit |
 
   Scenario Outline: Check correctness of generation results with different input values/parameters (First part of task2)
-    Given User opens '<homePage>'
-    And User put parameter(10) to input field
+    Given User opens "https://lipsum.com/"
+    And User put parameter'<parameter>' to input field
     And User clicks *words* radio button
     When User clicks “Generate Lorem Ipsum” button
-    Then User checks "10 words" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(-1) to input field
-    And User clicks *words* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "5 words" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(0) to input field
-    And User clicks *words* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "5 words" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(5) to input field
-    And User clicks *words* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "5 words" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(20) to input field
-    And User clicks *words* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "20 words" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(20) to input field
-    And User clicks *bytes* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "20 bytes" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(1) to input field
-    And User clicks *bytes* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "3 bytes" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(0) to input field
-    And User clicks *bytes* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "5 bytes" result of generation
-    Given User opens '<homePage>'
-    And User put parameter(-1) to input field
-    And User clicks *bytes* radio button
-    When User clicks “Generate Lorem Ipsum” button
-    Then User checks "5 bytes" result of generation
+    Then User checks '<result>' result of generation
 
     Examples:
-      | homePage            |
-      | https://lipsum.com/ |
+      | parameter | result   |
+      | 10        | 10 words |
+      | -1        | 5 words  |
+      | 0         | 5 words  |
+      | 5         | 5 words  |
+      | 20        | 20 words |
+      | 20        | 20 bytes |
+      | 1         | 3 bytes  |
+      | 0         | 5 bytes  |
+      | -1        | 5 bytes  |
 
   Scenario Outline: Check that after clicking checkbox text is not started with false result (Second part of task2)
     Given User opens '<homePage>'

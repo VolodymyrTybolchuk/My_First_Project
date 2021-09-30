@@ -65,12 +65,6 @@ public class DefinitionSteps {
     }
 
 
-    @And("User put parameter\\({int}) to input field")
-    public void userPutParameterToInputField(int parameter) {
-        String inputParameter= String.valueOf(parameter);
-        homePage.sendKeysToInputFieldForGeneration(inputParameter);
-    }
-
     @And("User clicks *words* radio button")
     public void userClicksWordsRadioButton() {
         homePage.clickWordsRadioButton();
@@ -97,5 +91,10 @@ public class DefinitionSteps {
     public void userChecksThatTextNotStartsWithFalseResult(final String falseResult) {
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
         assertTrue(homePage.getTextAfterClickingCheckboxAndGeneration().startsWith(falseResult)==false);
+    }
+
+    @And("User put parameter{string} to input field")
+    public void userPutParameterToInputField(String inputParameter) {
+        homePage.sendKeysToInputFieldForGeneration(inputParameter);
     }
 }
