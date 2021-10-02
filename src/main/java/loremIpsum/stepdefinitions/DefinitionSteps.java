@@ -117,9 +117,10 @@ afterGenerationPage.getParagraphs().stream().flatMap(x-> {
     }
 
     @Then("User checks if average number of paragraphs that contains keyword is more then {string}")
-    public void userChecksIfAverageNumberOfParagraphsThatContainsKeywordIsMoreThenExpectedAverageResult(final String expectedResult) {
-        Integer averageNumber = 50/counterOfParagraphs;
-        Integer numberOfExpectedResult= Integer.parseInt(expectedResult);
-        assertTrue(averageNumber>numberOfExpectedResult||averageNumber==numberOfExpectedResult);
+    public void userChecksIfAverageNumberOfParagraphsThatContainsKeywordIsMoreThenExpectedAverageResult(final String boundaryValue) {
+      Double paragraphsWithWord= Double.valueOf(counterOfParagraphs);
+        Double averageNumber = 50d/paragraphsWithWord;
+        Double numberOfBoundaryValue= Double.parseDouble(boundaryValue);
+        assertTrue(averageNumber>numberOfBoundaryValue||averageNumber==numberOfBoundaryValue);
     }
 }

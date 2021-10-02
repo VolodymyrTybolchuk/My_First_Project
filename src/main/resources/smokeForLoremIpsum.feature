@@ -81,8 +81,8 @@ Feature: Smoke
     Given User opens '<homePage>'
     When User clicks “Generate Lorem Ipsum” button
     And User determines number of each paragraph that contains '<word>'
-    Then User checks if average number of paragraphs that contains keyword is more then '<expectedAverageResult>'
+    Then User checks if average number of paragraphs that contains keyword is more then '<boundaryValue>'
 
     Examples:
-      | homePage            | word  | expectedAverageResult |
-      | https://lipsum.com/ | lorem | 2                     |
+      | homePage            | word  | boundaryValue |
+      | https://lipsum.com/ | lorem | 2             |
