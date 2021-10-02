@@ -13,12 +13,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DefinitionSteps {
+    private static Integer counterOfParagraphs= 0;
     private static final long DEFAULT_TIME = 120;
     WebDriver driver;
     PageFactoryManager pageFactoryManager;
@@ -106,6 +108,18 @@ public class DefinitionSteps {
     public void userDeterminesNumberOfEachParagraphThatContainsWord(final String word) {
         afterGenerationPage=pageFactoryManager.getAfterGenerationPage();
         afterGenerationPage.waitForPageLoadComplete(DEFAULT_TIME);
-        afterGenerationPage.getParagraphs().stream().filter(x-> x.getText().contains(word)).collect(Collectors.toList());
+afterGenerationPage.getParagraphs().stream().flatMap(x-> {
+    if (x.getText().contains(word)) {
+        counterOfParagraphs++;
+        return Stream.of(x);
+    }
+   return Stream.empty();}).collect(Collectors.toList());
+    }
+
+    @Then("User checks if average number of paragraphs that contains keyword is more then {string}")
+    public void userChecksIfAverageNumberOfParagraphsThatContainsKeywordIsMoreThenExpectedAverageResult(final String expectedResult) {
+        Integer averageNumber = 50/counterOfParagraphs;
+        Integer numberOfExpectedResult= Integer.parseInt(expectedResult);
+        assertTrue(averageNumber>numberOfExpectedResult||averageNumber==numberOfExpectedResult);
     }
 }
