@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DefinitionSteps {
-    private static Integer counterOfParagraphs= 0;
+    private static Integer counterOfParagraphs = 0;
     private static final long DEFAULT_TIME = 120;
     WebDriver driver;
     PageFactoryManager pageFactoryManager;
@@ -29,11 +29,11 @@ public class DefinitionSteps {
     AfterGenerationPage afterGenerationPage;
 
     @Before
-    public void testSetUp(){
+    public void testSetUp() {
         chromedriver().setup();
-        driver=new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        pageFactoryManager= new PageFactoryManager(driver);
+        pageFactoryManager = new PageFactoryManager(driver);
     }
 
     @And("User opens {string}")
@@ -44,7 +44,7 @@ public class DefinitionSteps {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
@@ -56,7 +56,7 @@ public class DefinitionSteps {
     @Then("User checks correctness of {string}")
     public void userChecksCorrectnessOfKeyword(final String keyword) {
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
-        assertEquals(keyword,homePage.getKeyword());
+        assertEquals(keyword, homePage.getKeyword());
     }
 
     @When("User clicks “Generate Lorem Ipsum” button")
@@ -67,7 +67,7 @@ public class DefinitionSteps {
     @Then("User checks {string} on first paragraph")
     public void userChecksTextOnFirstParagraph(final String expectedText) {
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
-        assertEquals(expectedText,homePage.getTextOfFirstParagraph());
+        assertEquals(expectedText, homePage.getTextOfFirstParagraph());
     }
 
 
@@ -83,7 +83,7 @@ public class DefinitionSteps {
 
     @Then("User checks {string} result of generation")
     public void userChecksResultOfGeneration(String expectedResult) {
-        afterGenerationResultPage=pageFactoryManager.getAfterGenerationResultPage();
+        afterGenerationResultPage = pageFactoryManager.getAfterGenerationResultPage();
         afterGenerationResultPage.waitForPageLoadComplete(DEFAULT_TIME);
         assertTrue(afterGenerationResultPage.getTextResult().contains(expectedResult));
     }
@@ -96,7 +96,7 @@ public class DefinitionSteps {
     @Then("User checks that text not starts with {string}")
     public void userChecksThatTextNotStartsWithFalseResult(final String falseResult) {
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
-        assertTrue(homePage.getTextAfterClickingCheckboxAndGeneration().startsWith(falseResult)==false);
+        assertTrue(homePage.getTextAfterClickingCheckboxAndGeneration().startsWith(falseResult) == false);
     }
 
     @And("User put parameter{string} to input field")
@@ -106,21 +106,22 @@ public class DefinitionSteps {
 
     @And("User determines number of each paragraph that contains {string}")
     public void userDeterminesNumberOfEachParagraphThatContainsWord(final String word) {
-        afterGenerationPage=pageFactoryManager.getAfterGenerationPage();
+        afterGenerationPage = pageFactoryManager.getAfterGenerationPage();
         afterGenerationPage.waitForPageLoadComplete(DEFAULT_TIME);
-afterGenerationPage.getParagraphs().stream().flatMap(x-> {
-    if (x.getText().contains(word)) {
-        counterOfParagraphs++;
-        return Stream.of(x);
-    }
-   return Stream.empty();}).collect(Collectors.toList());
+        afterGenerationPage.getParagraphs().stream().flatMap(x -> {
+            if (x.getText().contains(word)) {
+                counterOfParagraphs++;
+                return Stream.of(x);
+            }
+            return Stream.empty();
+        }).collect(Collectors.toList());
     }
 
     @Then("User checks if average number of paragraphs that contains keyword is more then {string}")
     public void userChecksIfAverageNumberOfParagraphsThatContainsKeywordIsMoreThenExpectedAverageResult(final String boundaryValue) {
-      Double paragraphsWithWord= Double.valueOf(counterOfParagraphs);
-        Double averageNumber = 50d/paragraphsWithWord;
-        Double numberOfBoundaryValue= Double.parseDouble(boundaryValue);
-        assertTrue(averageNumber>numberOfBoundaryValue||averageNumber==numberOfBoundaryValue);
+        Double paragraphsWithWord = Double.valueOf(counterOfParagraphs);
+        Double averageNumber = 50d / paragraphsWithWord;
+        Double numberOfBoundaryValue = Double.parseDouble(boundaryValue);
+        assertTrue(averageNumber >= numberOfBoundaryValue);
     }
 }
