@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class AfterGenerationPage extends BasePage{
+public class AfterGenerationPage extends BasePage {
     @FindAll(@FindBy(xpath = "//div[@id='lipsum']/p"))
     private List<WebElement> paragraphs;
 
@@ -15,9 +15,7 @@ public class AfterGenerationPage extends BasePage{
         super(driver);
     }
 
-    public List<WebElement> getParagraphs(){
+    public List<WebElement> getParagraphs() {
         return paragraphs;
     }
-
-   // public List<WebElement>
 }

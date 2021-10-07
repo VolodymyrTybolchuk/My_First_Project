@@ -1,6 +1,6 @@
 package loremIpsum.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
     private WebElement textAfterChangingLanguage;
     @FindBy(xpath = "//input[@value='Generate Lorem Ipsum']")
     private WebElement generateLoremIpsumButton;
-    @FindBy(xpath = "//div[@id='lipsum']//following-sibling::p[contains(.,'L')]")
+    @FindBy(xpath = "//div[@id='lipsum']")
     private WebElement textAfterClickingGenerateLoremIpsumButton;
     @FindBy(xpath = "//input[@type='text']")
     private WebElement inputFieldForGeneration;
@@ -30,7 +30,6 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    private static final long DEFAULT_TIME = 120;
 
     public void clickChangeLanguageButton() {
         changeLanguageButton.click();
@@ -43,6 +42,7 @@ public class HomePage extends BasePage {
         }
         return keyword;
     }
+
     public String getTextOfFirstParagraph() {
         String text = "some other result";
         if (textAfterClickingGenerateLoremIpsumButton.getText().startsWith("Lorem ipsum dolor sit amet, consectetur adipiscing elit")) {
@@ -50,29 +50,34 @@ public class HomePage extends BasePage {
         }
         return text;
     }
-    public void clickGenerateLoremIpsumButton(){
+
+    public void clickGenerateLoremIpsumButton() {
         generateLoremIpsumButton.click();
     }
 
-    public void openHomePage(String url) {
-        driver.get(url);
-    }
-
-    public void sendKeysToInputFieldForGeneration(final String inputValue){
+    public void sendKeysToInputFieldForGeneration(final String inputValue) {
         inputFieldForGeneration.clear();
         inputFieldForGeneration.sendKeys(inputValue);
     }
-    public void clickBytesRadioButton(){
-        bytesRadioButton.click();
+
+    public void setValueToRadioButton(final String value) {
+        RadioButton radioButton = new RadioButton();
+        radioButton.setValue(value);
     }
-    public void clickWordsRadioButton(){
-        wordsRadioButton.click();
-    }
-    public void clickOnCheckbox(){
+
+    public void clickOnCheckbox() {
         checkbox.click();
     }
-    public String getTextAfterClickingCheckboxAndGeneration(){
-        String text= textAfterClickingCheckboxAndGeneration.getText();
-        return text;
+
+    public class RadioButton {
+
+        public void setValue(String value) {
+            if (value == "words") {
+                driver.findElement(By.xpath("//input[@value='words']")).click();
+            } else if (value == "bytes") {
+                driver.findElement(By.xpath("//input[@value='bytes']")).click();
+            }
+        }
     }
+
 }
