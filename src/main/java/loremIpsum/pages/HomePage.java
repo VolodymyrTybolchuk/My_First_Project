@@ -1,5 +1,6 @@
 package loremIpsum.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -74,5 +75,19 @@ public class HomePage extends BasePage {
     public String getTextAfterClickingCheckboxAndGeneration(){
         String text= textAfterClickingCheckboxAndGeneration.getText();
         return text;
+    }
+    public void setValueToRadioButton(final String value) {
+        RadioButton radioButton = new RadioButton();
+        radioButton.setValue(value);
+    }
+    public class RadioButton {
+
+        public void setValue(String value) {
+            if (value == "words") {
+                driver.findElement(By.xpath("//input[@value='words']")).click();
+            } else if (value == "bytes") {
+                driver.findElement(By.xpath("//input[@value='bytes']")).click();
+            }
+        }
     }
 }

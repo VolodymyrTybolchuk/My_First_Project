@@ -70,17 +70,6 @@ public class DefinitionSteps {
         assertEquals(expectedText, homePage.getTextOfFirstParagraph());
     }
 
-
-    @And("User clicks *words* radio button")
-    public void userClicksWordsRadioButton() {
-        homePage.clickWordsRadioButton();
-    }
-
-    @And("User clicks *bytes* radio button")
-    public void userClicksBytesRadioButton() {
-        homePage.clickBytesRadioButton();
-    }
-
     @Then("User checks {string} result of generation")
     public void userChecksResultOfGeneration(String expectedResult) {
         afterGenerationResultPage = pageFactoryManager.getAfterGenerationResultPage();
@@ -123,5 +112,10 @@ public class DefinitionSteps {
         Double averageNumber = 50d / paragraphsWithWord;
         Double numberOfBoundaryValue = Double.parseDouble(boundaryValue);
         assertTrue(averageNumber >= numberOfBoundaryValue);
+    }
+
+    @And("User choose {string}")
+    public void userChooseRadiobutton(String radiobutton) {
+        homePage.setValueToRadioButton(radiobutton);
     }
 }

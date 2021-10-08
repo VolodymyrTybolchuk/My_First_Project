@@ -24,21 +24,21 @@ Feature: Smoke
   Scenario Outline: Check correctness of generation results with different input values/parameters (First part of task2)
     Given User opens "https://lipsum.com/"
     And User put parameter'<parameter>' to input field
-    And User clicks *words* radio button
+    And User choose '<radiobutton>'
     When User clicks “Generate Lorem Ipsum” button
     Then User checks '<result>' result of generation
 
     Examples:
-      | parameter | result   |
-      | 10        | 10 words |
-      | -1        | 5 words  |
-      | 0         | 5 words  |
-      | 5         | 5 words  |
-      | 20        | 20 words |
-      | 20        | 20 bytes |
-      | 1         | 3 bytes  |
-      | 0         | 5 bytes  |
-      | -1        | 5 bytes  |
+      | parameter | result   | radiobutton |
+      | 10        | 10 words | words       |
+      | -1        | 5 words  | words       |
+      | 0         | 5 words  | words       |
+      | 5         | 5 words  | words       |
+      | 20        | 20 words | words       |
+      | 20        | 20 bytes | bytes       |
+      | 1         | 3 bytes  | bytes       |
+      | 0         | 5 bytes  | bytes       |
+      | -1        | 5 bytes  | bytes       |
 
   Scenario Outline: Check that after clicking checkbox text is not started with false result (Second part of task2)
     Given User opens '<homePage>'
