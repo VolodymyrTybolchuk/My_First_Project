@@ -1,7 +1,6 @@
 package loremIpsum.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,10 +16,6 @@ public class HomePage extends BasePage {
     private WebElement textAfterClickingGenerateLoremIpsumButton;
     @FindBy(xpath = "//input[@type='text']")
     private WebElement inputFieldForGeneration;
-    @FindBy(xpath = "//input[@value='bytes']")
-    private WebElement bytesRadioButton;
-    @FindBy(xpath = "//input[@value='words']")
-    private WebElement wordsRadioButton;
     @FindBy(xpath = "//input[@id='start']")
     private WebElement checkbox;
     @FindBy(xpath = "//div[@id='lipsum']")
@@ -62,12 +57,6 @@ public class HomePage extends BasePage {
     public void sendKeysToInputFieldForGeneration(final String inputValue){
         inputFieldForGeneration.clear();
         inputFieldForGeneration.sendKeys(inputValue);
-    }
-    public void clickBytesRadioButton(){
-        bytesRadioButton.click();
-    }
-    public void clickWordsRadioButton(){
-        wordsRadioButton.click();
     }
     public void clickOnCheckbox(){
         checkbox.click();
