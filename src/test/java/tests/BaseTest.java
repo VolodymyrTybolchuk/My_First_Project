@@ -1,6 +1,6 @@
 package tests;
 
-import loremIpsum.businessLogicLayer.BLL;
+import loremipsum.businesslogiclayer.BLL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;

@@ -1,4 +1,4 @@
-package loremIpsum.pages;
+package loremipsum.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

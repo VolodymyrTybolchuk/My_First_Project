@@ -11,7 +11,7 @@ public class NumberOfParagraphsWithKeywordTest extends BaseTest {
     private static final long DEFAULT_TIME = 120;
     private static final Double BOUNDARY_VALUE = 2d;
     private static final String KEYWORD = "lorem";
-    private static Integer counterOfParagraphs = 0;
+    private static double counterOfParagraphs = 0.0;
 
     @Test(priority = 1, invocationCount = 10)
     public void determiningNumberOfParagraphsThatContainsKeyword() {
@@ -30,8 +30,7 @@ public class NumberOfParagraphsWithKeywordTest extends BaseTest {
 
     @Test(priority = 2)
     public void checkCorrectnessOfAverageNumberOfParagraphsWithKeyword() {
-        Double paragraphsWithWord = Double.valueOf(counterOfParagraphs);
-        Double averageNumber = 50d / paragraphsWithWord;
+        double averageNumber = 50.0 / counterOfParagraphs;
         assertTrue(averageNumber >= BOUNDARY_VALUE);
     }
 }

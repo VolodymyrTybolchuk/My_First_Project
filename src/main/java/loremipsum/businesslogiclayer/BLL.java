@@ -1,9 +1,9 @@
-package loremIpsum.businessLogicLayer;
+package loremipsum.businesslogiclayer;
 
 
-import loremIpsum.pages.AfterGenerationPage;
-import loremIpsum.pages.AfterGenerationResultPage;
-import loremIpsum.pages.HomePage;
+import loremipsum.pages.AfterGenerationPage;
+import loremipsum.pages.AfterGenerationResultPage;
+import loremipsum.pages.HomePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
