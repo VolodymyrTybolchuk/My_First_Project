@@ -18,6 +18,4 @@ public class AfterGenerationPage extends BasePage{
     public List<WebElement> getParagraphs(){
         return paragraphs;
     }
-
-   // public List<WebElement>
 }
