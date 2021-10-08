@@ -5,7 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import loremIpsum.manager.PageFactoryManager;
+import loremIpsum.businesslogiclayer.BusinessLogicLayer;
 import loremIpsum.pages.AfterGenerationPage;
 import loremIpsum.pages.AfterGenerationResultPage;
 import loremIpsum.pages.HomePage;
@@ -23,7 +23,7 @@ public class DefinitionSteps {
     private static Integer counterOfParagraphs = 0;
     private static final long DEFAULT_TIME = 120;
     WebDriver driver;
-    PageFactoryManager pageFactoryManager;
+    BusinessLogicLayer businessLogicLayer;
     HomePage homePage;
     AfterGenerationResultPage afterGenerationResultPage;
     AfterGenerationPage afterGenerationPage;
@@ -33,12 +33,12 @@ public class DefinitionSteps {
         chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        pageFactoryManager = new PageFactoryManager(driver);
+        businessLogicLayer = new BusinessLogicLayer(driver);
     }
 
     @And("User opens {string}")
     public void openPage(final String url) {
-        homePage = pageFactoryManager.getHomePage();
+        homePage = businessLogicLayer.getHomePage();
         homePage.openHomePage(url);
         homePage.waitForPageLoadComplete(DEFAULT_TIME);
     }
@@ -72,7 +72,7 @@ public class DefinitionSteps {
 
     @Then("User checks {string} result of generation")
     public void userChecksResultOfGeneration(String expectedResult) {
-        afterGenerationResultPage = pageFactoryManager.getAfterGenerationResultPage();
+        afterGenerationResultPage = businessLogicLayer.getAfterGenerationResultPage();
         afterGenerationResultPage.waitForPageLoadComplete(DEFAULT_TIME);
         assertTrue(afterGenerationResultPage.getTextResult().contains(expectedResult));
     }
@@ -95,7 +95,7 @@ public class DefinitionSteps {
 
     @And("User determines number of each paragraph that contains {string}")
     public void userDeterminesNumberOfEachParagraphThatContainsWord(final String word) {
-        afterGenerationPage = pageFactoryManager.getAfterGenerationPage();
+        afterGenerationPage = businessLogicLayer.getAfterGenerationPage();
         afterGenerationPage.waitForPageLoadComplete(DEFAULT_TIME);
         afterGenerationPage.getParagraphs().stream().flatMap(x -> {
             if (x.getText().contains(word)) {

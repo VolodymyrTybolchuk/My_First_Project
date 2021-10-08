@@ -1,13 +1,13 @@
-package loremIpsum.manager;
+package loremIpsum.businesslogiclayer;
 
 import loremIpsum.pages.*;
 import org.openqa.selenium.WebDriver;
 
-public class PageFactoryManager {
+public class BusinessLogicLayer {
 
     WebDriver driver;
 
-    public PageFactoryManager(WebDriver driver) {
+    public BusinessLogicLayer(WebDriver driver) {
         this.driver = driver;
     }
 
