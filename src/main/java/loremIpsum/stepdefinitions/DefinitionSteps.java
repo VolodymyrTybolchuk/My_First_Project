@@ -28,25 +28,25 @@ public class DefinitionSteps {
     AfterGenerationResultPage afterGenerationResultPage;
     AfterGenerationPage afterGenerationPage;
 
-    @Before
-    public void testSetUp() {
-        chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        businessLogicLayer = new BusinessLogicLayer(driver);
-    }
+//    @Before
+//    public void testSetUp() {
+//        chromedriver().setup();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//        businessLogicLayer = new BusinessLogicLayer(driver);
+//    }
 
-    @And("User opens {string}")
-    public void openPage(final String url) {
-        homePage = businessLogicLayer.getHomePage();
-        homePage.openHomePage(url);
-        homePage.waitForPageLoadComplete(DEFAULT_TIME);
-    }
+//    @And("User opens {string}")
+//    public void openPage(final String url) {
+//        homePage = businessLogicLayer.getHomePage();
+//        homePage.openHomePage(url);
+//        homePage.waitForPageLoadComplete(DEFAULT_TIME);
+//    }
 
-    @After
-    public void tearDown() {
-        driver.close();
-    }
+//    @After
+//    public void tearDown() {
+//        driver.close();
+//    }
 
     @When("User clicks changing language button")
     public void userClicksChangingLanguageButton() {
