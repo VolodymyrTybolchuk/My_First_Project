@@ -109,7 +109,7 @@ public class StepDefinitions {
                         "Burnley 'stole point by pure luck' - Chelsea boss Tuchel",
                         "Rampant England claim 11-try win against Tonga as Smith sparks late flurry",
                         "'I'm coming home' - Barca confirm Xavi return");
-        assertTrue((newsPage.getTitles().stream().map(Objects::toString).equals(listOfTitles)));
+        assertEquals(newsPage.getTitles().stream().map(x->x.getText()),listOfTitles);
     }
 
 }
