@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/smokeTestsForBBC1.feature",
+        features = "src/main/resources/smoke.feature",
         glue = "bbc1stepdefinitions"
 )
 public class RunnerTestsForBBC1 {
