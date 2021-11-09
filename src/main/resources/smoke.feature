@@ -15,3 +15,12 @@ Feature: Smoke
     When User clicks news page link
     Then User checks correctness of all secondary articles titles
 
+  Scenario Outline: Check search result by enter text of category link like search input
+    Given User opens '<page>'
+    And User clicks news page link
+    When User makes search by text of category link
+    Then User checks name correctness of first founded article '<nameOfTheFirstFoundedArticle>'
+    Examples:
+      | page                 | nameOfTheFirstFoundedArticle |
+      | https://www.bbc.com/ | Cities of Europe             |
+

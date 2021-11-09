@@ -3,6 +3,7 @@ package bbc1.bbc1stepdefinitions;
 import bbc1.businesslogiclayer.BusinessLogicLayer;
 import bbc1.pages.HomePage;
 import bbc1.pages.NewsPage;
+import bbc1.pages.SearchPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -26,6 +27,7 @@ public class StepDefinitions {
     BusinessLogicLayer businessLogicLayer;
     HomePage homePage;
     NewsPage newsPage;
+    SearchPage searchPage;
 
     @Before
     public void testSetUp() {
@@ -112,4 +114,16 @@ public class StepDefinitions {
         assertEquals(newsPage.getTitles().stream().map(x->x.getText()),listOfTitles);
     }
 
+    @When("User makes search by text of category link")
+    public void userMakesSearchByTextOfCategoryLink() {
+        newsPage = businessLogicLayer.getNewsPage();
+        newsPage.enterSearchInput(newsPage.getTextOfCategoryLink());
+    }
+
+    @Then("User checks name correctness of first founded article {string}")
+    public void userChecksNameCorrectnessOfFirstFoundedArticleNameOfTheFirstFoundedArticle(String expectedResult) {
+        searchPage = businessLogicLayer.getSearchPage();
+        searchPage.waitForPageLoadComplete(DEFAULT_TIME);
+        assertEquals(expectedResult,searchPage.getTextOfFirstFoundedArticle());
+    }
 }
