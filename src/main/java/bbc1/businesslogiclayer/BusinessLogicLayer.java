@@ -1,9 +1,7 @@
 package bbc1.businesslogiclayer;
 
-import bbc1.pages.SearchPage;
+import bbc1.pages.*;
 import org.openqa.selenium.WebDriver;
-import bbc1.pages.HomePage;
-import bbc1.pages.NewsPage;
 
 public class BusinessLogicLayer {
     WebDriver driver;
@@ -19,4 +17,9 @@ public class BusinessLogicLayer {
         return new NewsPage(driver);
     }
     public SearchPage getSearchPage(){return new SearchPage(driver);}
+    public CoronavirusPage getCoronavirusPage(){return new CoronavirusPage(driver);}
+    public YourCoronavirusStoriesPage getYourCoronavirusStoriesPage(){
+        return new YourCoronavirusStoriesPage(driver);
+    }
+    public QuestionPage getQuestionPage(){return new QuestionPage(driver);}
 }

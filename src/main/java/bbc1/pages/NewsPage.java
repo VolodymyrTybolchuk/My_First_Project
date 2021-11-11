@@ -18,6 +18,8 @@ public class NewsPage extends BasePage{
     private WebElement categoryLink;
     @FindBy(xpath = "//input[@id='orb-search-q']")
     private WebElement searchInput;
+    @FindBy(xpath = "//a[@class='nw-o-link'][contains(.,'Coronavirus')][1]")
+    private WebElement coronavirusTab;
     public NewsPage(WebDriver driver) {
         super(driver);
     }
@@ -33,5 +35,8 @@ public class NewsPage extends BasePage{
     public void enterSearchInput(final String input){
         searchInput.click();
         searchInput.sendKeys(input,ENTER);
+    }
+    public void clickCoronavirusTab(){
+        coronavirusTab.click();
     }
 }

@@ -1,9 +1,7 @@
 package bbc1.bbc1stepdefinitions;
 
 import bbc1.businesslogiclayer.BusinessLogicLayer;
-import bbc1.pages.HomePage;
-import bbc1.pages.NewsPage;
-import bbc1.pages.SearchPage;
+import bbc1.pages.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -28,6 +26,9 @@ public class StepDefinitions {
     HomePage homePage;
     NewsPage newsPage;
     SearchPage searchPage;
+    CoronavirusPage coronavirusPage;
+    YourCoronavirusStoriesPage yourCoronavirusStoriesPage;
+    QuestionPage questionPage;
 
     @Before
     public void testSetUp() {
@@ -125,5 +126,25 @@ public class StepDefinitions {
         searchPage = businessLogicLayer.getSearchPage();
         searchPage.waitForPageLoadComplete(DEFAULT_TIME);
         assertEquals(expectedResult,searchPage.getTextOfFirstFoundedArticle());
+    }
+
+    @And("User clicks on Coronavirus tab")
+    public void userClicksOnCoronavirusTab() {
+        newsPage = businessLogicLayer.getNewsPage();
+        newsPage.clickCoronavirusTab();
+    }
+
+    @And("User clicks on Your coronavirus stories tab")
+    public void userClicksOnYourCoronavirusStoriesTab() {
+        coronavirusPage = businessLogicLayer.getCoronavirusPage();
+        coronavirusPage.waitForPageLoadComplete(DEFAULT_TIME);
+        coronavirusPage.clickYourCoronavirusStoriesTab();
+    }
+
+    @When("User clicks on Question tab")
+    public void userClicksOnQuestionTab() {
+        yourCoronavirusStoriesPage = businessLogicLayer.getYourCoronavirusStoriesPage();
+        yourCoronavirusStoriesPage.waitForPageLoadComplete(DEFAULT_TIME);
+        yourCoronavirusStoriesPage.clickQuestionTab();
     }
 }

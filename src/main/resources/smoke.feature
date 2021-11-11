@@ -24,3 +24,10 @@ Feature: Smoke
       | page                 | nameOfTheFirstFoundedArticle |
       | https://www.bbc.com/ | Cities of Europe             |
 
+    Scenario: Check if any error message appears if fill the form with invalid data or leave some field empty
+      Given User opens '<https://www.bbc.com/>'
+      And User clicks news page link
+      And User clicks on Coronavirus tab
+      And User clicks on Your coronavirus stories tab
+      When User clicks on Question tab
+      Then
